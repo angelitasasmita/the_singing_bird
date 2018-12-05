@@ -1,0 +1,177 @@
+{
+  "Female Singers": [
+    {
+      "name": "GEM",
+      "songs": [
+        {
+          "title": "那一夜",
+          "link": "https://www.youtube.com/watch?v=ugVNDvnDDpA"
+        },
+        {
+          "title": "倒数",
+          "link": "https://www.youtube.com/watch?v=ma7r2HGqwXs"
+        },
+        {
+          "title": "再见",
+          "link": "https://www.youtube.com/watch?v=Lhel0tzHE08"
+        },
+        {
+          "title": "光年之外",
+          "link": "https://www.youtube.com/watch?v=T4SimnaiktU"
+        },
+        {
+          "title": "新的心跳",
+          "link": "https://www.youtube.com/watch?v=vDR-e3W6ARc"
+        },
+        {
+          "title": "A.I.N.Y爱你",
+          "link": "https://www.youtube.com/watch?v=-gaB9ov-Om0"
+        },
+        {
+          "title": "多远都要在一起",
+          "link": "https://www.youtube.com/watch?v=D9ksLn6hZ7Q"
+        }
+      ]
+    },
+    {
+      "name": "Ailee",
+      "songs": [
+        {
+          "title": "Reminiscing",
+          "link": "https://www.youtube.com/watch?v=Spo8fiFHQls"
+        },
+        {
+          "title": "Heaven",
+          "link": "https://www.youtube.com/watch?v=DQzK8II1qAU"
+        },
+        {
+          "title": "I will go to you like first snow",
+          "link": "https://www.youtube.com/watch?v=xW7gKmeXhuQ"
+        },
+        {
+          "title": "I will show you",
+          "link": "https://www.youtube.com/watch?v=-Q-OmGsk4hM"
+        },
+        {
+          "title": "If you",
+          "link": "https://www.youtube.com/watch?v=R3xy0vbxNUs"
+        },
+        {
+          "title": "Rainy Day",
+          "link": "https://www.youtube.com/watch?v=qSFFDxKE4B4"
+        },
+        {
+          "title": "U&I",
+          "link": "https://www.youtube.com/watch?v=398DDVagbPI"
+        }
+      ]
+    },
+    {
+      "name": "Hebe Tien",
+      "songs": [
+        {
+          "title": "渺小",
+          "link": "https://www.youtube.com/watch?v=BClZoVLwZCE"
+        },
+        {
+          "title": "魔鬼中的天使",
+          "link": "https://www.youtube.com/watch?v=na_xv5iFt2Y"
+        },
+        {
+          "title": "你就不要想起我",
+          "link": "https://www.youtube.com/watch?v=GsKbnsUN2RE"
+        },
+        {
+          "title": "不醉不会",
+          "link": "https://www.youtube.com/watch?v=7gQxgKaiPzk"
+        },
+        {
+          "title": "寂寞寂寞就好",
+          "link": "https://www.youtube.com/watch?v=DyFIzKYQQYE"
+        }
+      ]
+    }
+  ],
+  "Male Singers": [
+    {
+      "name": "JJ Lin",
+      "songs": [
+        {
+          "title": "曹操",
+          "link": "https://www.youtube.com/watch?v=3J_bkgexrE8"
+        },
+        {
+          "title": "不死之身",
+          "link": "https://www.youtube.com/watch?v=h03_hs_QbEE"
+        },
+        {
+          "title": "美人鱼",
+          "link": "https://www.youtube.com/watch?v=jdf3gxFP0F8"
+        },
+        {
+          "title": "就是我",
+          "link": "https://www.youtube.com/watch?v=GLtLjBS0cs0"
+        }
+      ]
+    },
+    {
+      "name": "Jay Chau",
+      "songs": [
+        {
+          "title": "聽見下雨的聲音",
+          "link": "https://www.youtube.com/watch?v=IFJjJ9zBGGQ"
+        }
+      ]
+    }
+  ],
+  "Band": [
+    {
+      "name": "Fall Out Boy",
+      "songs": [
+        {
+          "title": "Dance, Dance",
+          "link": "https://www.youtube.com/watch?v=bxxJ25-3QEA"
+        },
+        {
+          "title": "Sugar, we're going down",
+          "link": "https://www.youtube.com/watch?v=d5lOB7Ibjhg"
+        }
+      ]
+    },
+    {
+      "name": "Queen",
+      "songs": [
+        {
+          "title": "Bohemian Rhapsody",
+          "link": "https://www.youtube.com/watch?v=XuHG2fnz8hA"
+        }
+      ]
+    },
+    {
+      "name": "Maroon 5",
+      "songs": [
+        {
+          "title": "Animals",
+          "link": "https://www.youtube.com/watch?v=a5-tjIB9YBk"
+        },
+        {
+          "title": "She will be loved",
+          "link": "https://www.youtube.com/watch?v=zJmVq8-p1CE"
+        }
+      ]
+    },
+    {
+      "name": "Panic at the Disco",
+      "songs": [
+        {
+          "title": "High Hopes",
+          "link": "https://www.youtube.com/watch?v=qB2qu0xYWHA"
+        },
+        {
+          "title": "Death of Bachelor",
+          "link": "https://www.youtube.com/watch?v=7MPe5t0o48c"
+        }
+      ]
+    }
+  ]
+}
