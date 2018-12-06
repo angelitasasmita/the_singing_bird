@@ -12,7 +12,7 @@ class SongSelectorScreen extends StatefulWidget {
 
 class SongSelectorScreenState extends State<SongSelectorScreen> {
   Widget _showScreen;
-  List<Category> _categories;
+  final _categories = <Category>[];
 
   @override
   void initState(){
@@ -30,9 +30,10 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
   @override
   Future<void> didChangeDependencies() async {
     super.didChangeDependencies();
-//    if (_categories.isEmpty) {
+    print(_categories.length);
+    if (_categories.isEmpty) {
       await _retrieveLocalCategories();
-//    }
+    }
   }
 
   /// Retrieves a list of [Categories] and their [Unit]s
@@ -46,12 +47,13 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
     }
     data.keys.forEach((key) {
 
-      final List<dynamic> singers = data[key].map((i) => Singer.fromJSON(i)).toList();
-      for(Singer singer in singers){
-        for(Song song in singer.songs){
-          print(song.title);
-        }
-      }
+      final List<Singer> singers = data[key].map<Singer>((i) => Singer.fromJSON(i)).toList();
+      var category = Category(
+        name: key,
+        singers: singers
+      );
+
+      _categories.add(category);
     });
   }
 
