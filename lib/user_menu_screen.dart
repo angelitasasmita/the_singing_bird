@@ -11,9 +11,9 @@ class UserMenuScreenState extends State<UserMenuScreen> {
   @override
   Widget build(BuildContext context) {
     return Expanded(
-        child: Scaffold(
+      child: Scaffold(
       appBar: AppBar(
-        title: Text('APPBAR'),
+        title: Text('Song Queue'),
       ),
       drawer: Drawer(
         child: SongSelectorScreen(),

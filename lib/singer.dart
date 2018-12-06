@@ -15,10 +15,12 @@ class Singer {
 
   factory Singer.fromJSON(Map jsonMap){
     var list = jsonMap['songs'] as List;
-    List<Song> songList = list.map((i) => Song.fromJSON(i)).toList();
+    final singerName = jsonMap['name'];
+
+    List<Song> songList = list.map((i) => Song.fromJSON(i, singerName)).toList();
 
     return Singer (
-        name: jsonMap['name'],
+        name: singerName,
         songs: songList
     );
   }
