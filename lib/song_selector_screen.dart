@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:the_singing_bird/category.dart';
+import 'package:the_singing_bird/singer.dart';
+import 'package:the_singing_bird/song.dart';
 
 class SongSelectorScreen extends StatefulWidget {
   @override
@@ -7,6 +12,7 @@ class SongSelectorScreen extends StatefulWidget {
 
 class SongSelectorScreenState extends State<SongSelectorScreen> {
   Widget _showScreen;
+  List<Category> _categories;
 
   @override
   void initState(){
@@ -21,7 +27,33 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
     return _showScreen;
   }
 
+  @override
+  Future<void> didChangeDependencies() async {
+    super.didChangeDependencies();
+//    if (_categories.isEmpty) {
+      await _retrieveLocalCategories();
+//    }
+  }
 
+  /// Retrieves a list of [Categories] and their [Unit]s
+  Future<void> _retrieveLocalCategories() async {
+    final json = DefaultAssetBundle
+        .of(context)
+        .loadString('assets/data/songs.json');
+    final data = JsonDecoder().convert(await json);
+    if (data is! Map) {
+      throw ('Data retrieved from API is not a Map');
+    }
+    data.keys.forEach((key) {
+
+      final List<dynamic> singers = data[key].map((i) => Singer.fromJSON(i)).toList();
+      for(Singer singer in singers){
+        for(Song song in singer.songs){
+          print(song.title);
+        }
+      }
+    });
+  }
 
 
   Widget _buildSingerList(String title) {

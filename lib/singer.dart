@@ -3,19 +3,24 @@ import 'package:the_singing_bird/song.dart';
 
 class Singer {
   final String name;
-  final Song song;
+  final List<Song> songs;
 
   const Singer({
     @required this.name,
-    @required this.song
+    @required this.songs
   })
       : assert(name != null),
-        assert(song != null);
+        assert(songs != null);
 
 
-  Singer.fromJson(Map jsonMap)
-      : assert(jsonMap['name'] != null),
-        assert(jsonMap['son'] != null),
-        name = jsonMap['name'],
-        song = jsonMap['song'];
+  factory Singer.fromJSON(Map jsonMap){
+    var list = jsonMap['songs'] as List;
+    List<Song> songList = list.map((i) => Song.fromJSON(i)).toList();
+
+    return Singer (
+        name: jsonMap['name'],
+        songs: songList
+    );
+  }
+
 }
