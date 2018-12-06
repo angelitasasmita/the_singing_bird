@@ -74,6 +74,12 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
                     .singers[singerIndex]
                     .songs[int]
                     .title),
+                trailing: GestureDetector(
+                  child: Icon(Icons.add),
+                  onTap: () {
+                    print('hi');
+                  },
+                ),
               );
             }));
   }
