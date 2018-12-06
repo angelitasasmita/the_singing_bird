@@ -43,6 +43,7 @@ class _BaseWidgetState extends State<BaseWidget> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        automaticallyImplyLeading: false,
       ),
       body: Center(
         child: Column(

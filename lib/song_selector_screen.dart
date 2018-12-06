@@ -57,55 +57,83 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
+          leading: GestureDetector(
+              onTap: () {
+                setState(() {
+                  _showScreen = _buildSingerList(title, categoryIndex);
+                });
+              },
+              child: Icon(Icons.arrow_back)),
         ),
         body: ListView.builder(
-            itemCount: _categories[categoryIndex].singers[singerIndex].songs.length,
+            itemCount:
+                _categories[categoryIndex].singers[singerIndex].songs.length,
             itemBuilder: (context, int) {
               return ListTile(
-                leading: Text(_categories[categoryIndex].singers[singerIndex].songs[int].title),
+                leading: Text(_categories[categoryIndex]
+                    .singers[singerIndex]
+                    .songs[int]
+                    .title),
               );
             }));
   }
 
   Widget _buildSingerList(String title, int categoryIndex) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(title),
-        ),
-        body: ListView.builder(
-            itemCount: _categories[categoryIndex].singers.length,
-            itemBuilder: (context, int) {
-              var singerName = _categories[categoryIndex].singers[int].name;
+    return WillPopScope(
+        onWillPop: _onWillPop,
+        child: Scaffold(
+            appBar: AppBar(
+              title: Text(title),
+              leading: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _showScreen = _buildCategoryList();
+                    });
+                  },
+                  child: Icon(Icons.arrow_back)),
+            ),
+            body: ListView.builder(
+                itemCount: _categories[categoryIndex].singers.length,
+                itemBuilder: (context, int) {
+                  var singerName = _categories[categoryIndex].singers[int].name;
 
-              return ListTile(
-                leading: Text(singerName),
-                onTap: () {
-                  setState(() {
-                    _showScreen = _buildSongList(singerName, categoryIndex, int);
-                  });
-                },
-              );
-            }));
+                  return ListTile(
+                    leading: Text(singerName),
+                    onTap: () {
+                      setState(() {
+                        _showScreen =
+                            _buildSongList(singerName, categoryIndex, int);
+                      });
+                    },
+                  );
+                })));
   }
 
   Widget _buildCategoryList() {
     return Scaffold(
-        appBar: AppBar(
-          title: Text("Category"),
-        ),
-        body: ListView.builder(
-            itemCount: _categories.length,
-            itemBuilder: (context, int) {
-              var categoryName = _categories[int].name;
+      appBar: AppBar(
+        title: Text('Category'),
+        automaticallyImplyLeading: false,
+      ),
+      body: ListView.builder(
+          shrinkWrap: true,
+          itemCount: _categories.length,
+          itemBuilder: (context, int) {
+            var categoryName = _categories[int].name;
 
-              return ListTile(
-                leading: Text(categoryName),
-                onTap: () {
-                  setState(() {
-                    _showScreen = _buildSingerList(categoryName, int);
-                  });
-                },
-              );
-            }));
+            return ListTile(
+              leading: Text(categoryName),
+              onTap: () {
+                setState(() {
+                  _showScreen = _buildSingerList(categoryName, int);
+                });
+              },
+            );
+          }),
+    );
+  }
+
+  Future<bool> _onWillPop() {
+    return _buildCategoryList() ?? false;
   }
 }
