@@ -37,6 +37,12 @@ class MyInheritedWidgetState extends State<MyInheritedWidget> {
 
   List<Song> get retriveSongs => _songs;
 
+  void removeSong(int index){
+    setState(() {
+      _songs.removeAt(index);
+    });
+  }
+
   void addSong(Song song){
     setState(() {
       _songs.add(song);
