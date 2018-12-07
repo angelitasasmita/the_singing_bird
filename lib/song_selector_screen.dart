@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:the_singing_bird/category.dart';
+import 'package:the_singing_bird/inherited.dart';
 import 'package:the_singing_bird/singer.dart';
-import 'package:the_singing_bird/song.dart';
 
 final _categories = <Category>[];
 
@@ -23,8 +23,6 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
 
   @override
   Widget build(BuildContext context) {
-    String _currentScreen = "category";
-
     return _showScreen;
   }
 
@@ -54,6 +52,7 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
   }
 
   Widget _buildSongList(String title, int categoryIndex, int singerIndex) {
+    final MyInheritedWidgetState state = MyInheritedWidget.of(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
@@ -69,15 +68,18 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
             itemCount:
                 _categories[categoryIndex].singers[singerIndex].songs.length,
             itemBuilder: (context, int) {
+              var song = _categories[categoryIndex]
+                  .singers[singerIndex]
+                  .songs[int];
               return ListTile(
-                leading: Text(_categories[categoryIndex]
-                    .singers[singerIndex]
-                    .songs[int]
-                    .title),
+                leading: Text(song.title),
                 trailing: GestureDetector(
                   child: Icon(Icons.add),
                   onTap: () {
-                    print('hi');
+                    setState(() {
+                      state.addSong(song);
+                      //TODO add toast - check if duplicate song added
+                    });
                   },
                 ),
               );
