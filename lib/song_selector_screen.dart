@@ -74,20 +74,27 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
               var song = _categories[categoryIndex]
                   .singers[singerIndex]
                   .songs[int];
-              return ListTile(
-                leading: Text(song.title),
-                trailing: GestureDetector(
-                  child: Icon(Icons.add),
-                  onTap: () {
-                    setState(() {
-                      state.addSong(song);
-                      //TODO add toast - check if duplicate song added
-                    });
-                    final snackBar = SnackBar(
-                      content: Text("Song added to queue"),
-                    );
-                    Scaffold.of(context).showSnackBar(snackBar);
-                  },
+              return InkWell(
+                splashColor: Colors.lightBlueAccent,
+                onTap: () {
+                  setState(() {
+                    state.addSong(song);
+                    //TODO check if duplicate song added
+                  });
+                  final snackBar = SnackBar(
+                    duration: const Duration(seconds: 1),
+                    //TODO fix so that snackbar does not duplicate
+                    content: Text("Song added to queue"),
+                  );
+
+                  Scaffold.of(context).showSnackBar(snackBar);
+                },
+                child: ListTile(
+                  leading: Text(song.title),
+                  trailing: GestureDetector(
+                    child: Icon(Icons.add),
+
+                  ),
                 ),
               );
             }));
