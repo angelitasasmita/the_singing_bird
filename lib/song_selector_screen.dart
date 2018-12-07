@@ -18,7 +18,7 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
   @override
   void initState() {
     super.initState();
-    _showScreen =_buildCategoryList();
+    _showScreen = _buildCategoryList();
   }
 
   @override
@@ -71,9 +71,8 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
             itemCount:
                 _categories[categoryIndex].singers[singerIndex].songs.length,
             itemBuilder: (context, int) {
-              var song = _categories[categoryIndex]
-                  .singers[singerIndex]
-                  .songs[int];
+              var song =
+                  _categories[categoryIndex].singers[singerIndex].songs[int];
               return InkWell(
                 splashColor: Colors.lightBlueAccent,
                 onTap: () {
@@ -89,11 +88,16 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
 
                   Scaffold.of(context).showSnackBar(snackBar);
                 },
-                child: ListTile(
-                  leading: Text(song.title),
-                  trailing: GestureDetector(
-                    child: Icon(Icons.add),
-
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom: Divider.createBorderSide(context,
+                              color: Colors.black))),
+                  child: ListTile(
+                    leading: Text(song.title),
+                    trailing: GestureDetector(
+                      child: Icon(Icons.add),
+                    ),
                   ),
                 ),
               );
