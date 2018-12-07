@@ -13,29 +13,6 @@ class SongQueueScreenState extends State<SongQueueScreen> {
   Widget build(BuildContext context) {
     final MyInheritedWidgetState state = MyInheritedWidget.of(context);
     if (state.songsCount != 0) {
-      final List<Text> listTextSample = <Text>[
-        Text(
-          'hi',
-          key: Key('12Hi'),
-          style: Theme.of(context).textTheme.title,
-        ),
-        Text(
-          'buy',
-          key: Key('132jo'),
-          style: Theme.of(context).textTheme.title,
-        )
-      ];
-//      return ReorderableListView(
-//          children: listTextSample,
-//          onReorder: (oldIndex, newIndex) {
-//            if (oldIndex < newIndex) {
-//              // removing the item at oldIndex will shorten the list by 1.
-//              newIndex -= 1;
-//            }
-//            final Text element = listTextSample.removeAt(oldIndex);
-//            listTextSample.insert(newIndex, element);
-//          });
-
       if(state.songsCount == 1){
         Song song = state.retriveSongs[0];
         return ListTile(
@@ -72,22 +49,6 @@ class SongQueueScreenState extends State<SongQueueScreen> {
           canBeDraggedTo: (one, two) => true,
           dragElevation: 8.0,);
       }
-
-
-//      return ListView.builder(
-//          itemCount: state.songsCount,
-//          itemBuilder: (context, int) {
-//            return ListTile(
-//              leading: GestureDetector(
-//                  onTap: () {
-//                    state.removeSong(int);
-//                  },
-//                  child: Icon(Icons.clear)),
-//              title: Text(state.retriveSongs[int].title),
-//              subtitle: Text(state.retriveSongs[int].singerName),
-//              trailing: Icon(Icons.dehaze),
-//            );
-//          });
     } else
       return Center(child: Text("No songs added :("));
   }
