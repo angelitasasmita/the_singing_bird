@@ -15,9 +15,11 @@ class SongQueueScreenState extends State<SongQueueScreen> {
           itemCount: state.songsCount,
           itemBuilder: (context, int) {
             return ListTile(
-              leading: GestureDetector(onTap: () {
-                state.removeSong(int);
-              }, child: Icon(Icons.clear)),
+              leading: GestureDetector(
+                  onTap: () {
+                    state.removeSong(int);
+                  },
+                  child: Icon(Icons.clear)),
               title: Text(state.retriveSongs[int].title),
               subtitle: Text(state.retriveSongs[int].singerName),
               trailing: Icon(Icons.dehaze),

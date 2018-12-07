@@ -166,17 +166,20 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(
                     vertical: 20.0, horizontal: 30.0),
-                child: SizedBox(
-                  height: 120.0,
-                  width: 150.0,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                        color: Colors.deepOrange,
-                        borderRadius: BorderRadius.circular(20.0)),
+                child: Card(
+                  color: Colors.lightBlueAccent,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0)),
+                  child: SizedBox(
+                    height: 120.0,
+                    width: 150.0,
                     child: Center(
                         child: Text(
                       categoryName,
-                      style: Theme.of(context).textTheme.title,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold),
                     )),
                   ),
                 ),
