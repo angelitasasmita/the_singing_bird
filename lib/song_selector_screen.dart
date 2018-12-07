@@ -31,10 +31,10 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
     super.didChangeDependencies();
     if (_categories.isEmpty) {
       await _retrieveLocalCategories();
+      setState(() {
+        _showScreen = _buildCategoryList();
+      });
     }
-    setState(() {
-      _showScreen = _buildCategoryList();
-    });
   }
 
   /// Retrieves a list of [Categories] and their [Unit]s
@@ -83,6 +83,10 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
                       state.addSong(song);
                       //TODO add toast - check if duplicate song added
                     });
+                    final snackBar = SnackBar(
+                      content: Text("Song added to queue"),
+                    );
+                    Scaffold.of(context).showSnackBar(snackBar);
                   },
                 ),
               );
