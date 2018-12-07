@@ -123,14 +123,23 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
                 itemBuilder: (context, int) {
                   var singerName = _categories[categoryIndex].singers[int].name;
 
-                  return ListTile(
-                    leading: Text(singerName),
+                  return InkWell(
+                    splashColor: Colors.lightGreen,
                     onTap: () {
                       setState(() {
                         _showScreen =
                             _buildSongList(singerName, categoryIndex, int);
                       });
                     },
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                          border: Border(
+                              bottom: Divider.createBorderSide(context,
+                                  color: Colors.black))),
+                      child: ListTile(
+                        leading: Text(singerName),
+                      ),
+                    ),
                   );
                 })));
   }
