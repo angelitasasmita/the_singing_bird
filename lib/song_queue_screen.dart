@@ -15,8 +15,9 @@ class SongQueueScreenState extends State<SongQueueScreen> {
           itemCount: state.songsCount,
           itemBuilder: (context, int) {
             return ListTile(
-              leading: Text(state.retriveSongs[int].title),
-              title: Text(state.retriveSongs[int].singerName),
+              title: Text(state.retriveSongs[int].title),
+              subtitle: Text(state.retriveSongs[int].singerName),
+              trailing: Icon(Icons.dehaze),
             );
           });
     } else

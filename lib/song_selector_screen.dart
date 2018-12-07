@@ -171,7 +171,7 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
                   width: 150.0,
                   child: DecoratedBox(
                     decoration: BoxDecoration(
-                        color: Colors.red,
+                        color: Colors.deepOrange,
                         borderRadius: BorderRadius.circular(20.0)),
                     child: Center(
                         child: Text(
