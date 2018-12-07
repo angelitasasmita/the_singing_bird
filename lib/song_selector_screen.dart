@@ -18,7 +18,7 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
   @override
   void initState() {
     super.initState();
-    _showScreen = _buildCategoryList();
+    _showScreen =_buildCategoryList();
   }
 
   @override
@@ -32,6 +32,9 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
     if (_categories.isEmpty) {
       await _retrieveLocalCategories();
     }
+    setState(() {
+      _showScreen = _buildCategoryList();
+    });
   }
 
   /// Retrieves a list of [Categories] and their [Unit]s
