@@ -83,6 +83,8 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
         ),
         body: DraggableScrollbar.arrows(
           controller: controller,
+          labelTextBuilder: (double offset) => Text("${offset}", style: TextStyle(color: Colors.white),),
+          scrollbarTimeToFade: Duration(seconds: 1),
           backgroundColor: Colors.red,
           child: ListView.builder(
               controller: controller,
