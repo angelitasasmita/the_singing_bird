@@ -52,6 +52,18 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
 
       _categories.add(category);
     });
+
+    _sortDataAlphabetically();
+  }
+
+  void _sortDataAlphabetically() {
+    _categories.sort((a, b) => a.name.compareTo(b.name));
+    for(Category category in _categories){
+      category.singers.sort((a,b) => a.name.compareTo(b.name));
+      for(Singer singer in category.singers){
+        singer.songs.sort((a,b) => a.title.compareTo(b.title));
+      }
+    }
   }
 
   Widget _buildSongList(String title, int categoryIndex, int singerIndex) {

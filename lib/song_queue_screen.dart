@@ -27,6 +27,7 @@ class SongQueueScreenState extends State<SongQueueScreen> {
         );
 
       } else {
+        //TODO: fix draggable up to only include botton container
         return DragAndDropList<Song>(state.retriveSongs,
           itemBuilder: (context, song) {
             return ListTile(
