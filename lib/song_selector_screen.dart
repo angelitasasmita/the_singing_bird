@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:the_singing_bird/category.dart';
 import 'package:the_singing_bird/inherited.dart';
 import 'package:the_singing_bird/singer.dart';
+import 'package:draggable_scrollbar/draggable_scrollbar.dart';
 
 final _categories = <Category>[];
 
@@ -58,16 +59,17 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
 
   void _sortDataAlphabetically() {
     _categories.sort((a, b) => a.name.compareTo(b.name));
-    for(Category category in _categories){
-      category.singers.sort((a,b) => a.name.compareTo(b.name));
-      for(Singer singer in category.singers){
-        singer.songs.sort((a,b) => a.title.compareTo(b.title));
+    for (Category category in _categories) {
+      category.singers.sort((a, b) => a.name.compareTo(b.name));
+      for (Singer singer in category.singers) {
+        singer.songs.sort((a, b) => a.title.compareTo(b.title));
       }
     }
   }
 
   Widget _buildSongList(String title, int categoryIndex, int singerIndex) {
     final MyInheritedWidgetState state = MyInheritedWidget.of(context);
+    final ScrollController controller = ScrollController();
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
@@ -79,41 +81,46 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
               },
               child: Icon(Icons.arrow_back)),
         ),
-        body: ListView.builder(
-            itemCount:
-                _categories[categoryIndex].singers[singerIndex].songs.length,
-            itemBuilder: (context, int) {
-              var song =
-                  _categories[categoryIndex].singers[singerIndex].songs[int];
-              return InkWell(
-                splashColor: Colors.lightBlueAccent,
-                onTap: () {
-                  setState(() {
-                    state.addSong(song);
-                    //TODO check if duplicate song added
-                  });
-                  final snackBar = SnackBar(
-                    duration: const Duration(seconds: 1),
-                    //TODO fix so that snackbar does not duplicate
-                    content: Text("Song added to queue"),
-                  );
+        body: DraggableScrollbar.arrows(
+          controller: controller,
+          backgroundColor: Colors.red,
+          child: ListView.builder(
+              controller: controller,
+              itemCount:
+                  _categories[categoryIndex].singers[singerIndex].songs.length,
+              itemBuilder: (context, int) {
+                var song =
+                    _categories[categoryIndex].singers[singerIndex].songs[int];
+                return InkWell(
+                  splashColor: Colors.lightBlueAccent,
+                  onTap: () {
+                    setState(() {
+                      state.addSong(song);
+                      //TODO check if duplicate song added
+                    });
+                    final snackBar = SnackBar(
+                      duration: const Duration(seconds: 1),
+                      //TODO fix so that snackbar does not duplicate
+                      content: Text("Song added to queue"),
+                    );
 
-                  Scaffold.of(context).showSnackBar(snackBar);
-                },
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: Divider.createBorderSide(context,
-                              color: Colors.black))),
-                  child: ListTile(
-                    leading: Text(song.title),
-                    trailing: GestureDetector(
-                      child: Icon(Icons.add),
+                    Scaffold.of(context).showSnackBar(snackBar);
+                  },
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                        border: Border(
+                            bottom: Divider.createBorderSide(context,
+                                color: Colors.black))),
+                    child: ListTile(
+                      leading: Text(song.title),
+                      trailing: GestureDetector(
+                        child: Icon(Icons.add),
+                      ),
                     ),
                   ),
-                ),
-              );
-            }));
+                );
+              }),
+        ));
   }
 
   Widget _buildSingerList(String title, int categoryIndex) {
