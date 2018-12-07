@@ -151,18 +151,36 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
         automaticallyImplyLeading: false,
       ),
       body: ListView.builder(
+          scrollDirection: Axis.vertical,
           shrinkWrap: true,
           itemCount: _categories.length,
           itemBuilder: (context, int) {
             var categoryName = _categories[int].name;
 
-            return ListTile(
-              leading: Text(categoryName),
+            return GestureDetector(
               onTap: () {
                 setState(() {
                   _showScreen = _buildSingerList(categoryName, int);
                 });
               },
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: 20.0, horizontal: 30.0),
+                child: SizedBox(
+                  height: 120.0,
+                  width: 150.0,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                        color: Colors.red,
+                        borderRadius: BorderRadius.circular(20.0)),
+                    child: Center(
+                        child: Text(
+                      categoryName,
+                      style: Theme.of(context).textTheme.title,
+                    )),
+                  ),
+                ),
+              ),
             );
           }),
     );
