@@ -71,7 +71,8 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
   Widget _buildSongList(String title, int categoryIndex, int singerIndex) {
     final MyInheritedWidgetState state = MyInheritedWidget.of(context);
     final ScrollController controller = ScrollController();
-    final songsList = _categories[categoryIndex].singers[singerIndex].songs;
+    final _songsList = _categories[categoryIndex].singers[singerIndex].songs;
+
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
@@ -87,15 +88,15 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
           alwaysVisibleScrollThumb: true,
           controller: controller,
           labelTextBuilder: (double offset) => Text(
-                "${songsList[min(offset ~/ 55.0, songsList.length - 1)].title.substring(0,1)}",
+                "${_songsList[min(offset ~/ 55.0, _songsList.length - 1)].title.substring(0, 1)}",
                 style: TextStyle(color: Colors.black),
               ),
           scrollbarTimeToFade: Duration(seconds: 1),
           child: ListView.builder(
               controller: controller,
-              itemCount: songsList.length,
+              itemCount: _songsList.length,
               itemBuilder: (context, int) {
-                var song = songsList[int];
+                var song = _songsList[int];
                 return InkWell(
                   splashColor: Colors.lightBlueAccent,
                   onTap: () {
@@ -129,6 +130,9 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
   }
 
   Widget _buildSingerList(String title, int categoryIndex) {
+    final ScrollController controller = ScrollController();
+    final _singersList = _categories[categoryIndex].singers;
+
     return WillPopScope(
         onWillPop: _onWillPop,
         child: Scaffold(
@@ -142,30 +146,40 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
                   },
                   child: Icon(Icons.arrow_back)),
             ),
-            body: ListView.builder(
-                itemCount: _categories[categoryIndex].singers.length,
-                itemBuilder: (context, int) {
-                  var singerName = _categories[categoryIndex].singers[int].name;
+            body: DraggableScrollbar.semicircle(
+              alwaysVisibleScrollThumb: true,
+              controller: controller,
+              labelTextBuilder: (double offset) => Text(
+                    "${_singersList[min(offset ~/ 55.0, _singersList.length - 1)].name.substring(0, 1)}",
+                    style: TextStyle(color: Colors.black),
+                  ),
+              scrollbarTimeToFade: Duration(seconds: 1),
+              child: ListView.builder(
+                  controller: controller,
+                  itemCount: _categories[categoryIndex].singers.length,
+                  itemBuilder: (context, int) {
+                    var singerName = _singersList[int].name;
 
-                  return InkWell(
-                    splashColor: Colors.lightGreen,
-                    onTap: () {
-                      setState(() {
-                        _showScreen =
-                            _buildSongList(singerName, categoryIndex, int);
-                      });
-                    },
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                          border: Border(
-                              bottom: Divider.createBorderSide(context,
-                                  color: Colors.black))),
-                      child: ListTile(
-                        leading: Text(singerName),
+                    return InkWell(
+                      splashColor: Colors.lightGreen,
+                      onTap: () {
+                        setState(() {
+                          _showScreen =
+                              _buildSongList(singerName, categoryIndex, int);
+                        });
+                      },
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                            border: Border(
+                                bottom: Divider.createBorderSide(context,
+                                    color: Colors.black))),
+                        child: ListTile(
+                          leading: Text(singerName),
+                        ),
                       ),
-                    ),
-                  );
-                })));
+                    );
+                  }),
+            )));
   }
 
   Widget _buildCategoryList() {
