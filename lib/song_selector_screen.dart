@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:the_singing_bird/category.dart';
@@ -70,6 +71,7 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
   Widget _buildSongList(String title, int categoryIndex, int singerIndex) {
     final MyInheritedWidgetState state = MyInheritedWidget.of(context);
     final ScrollController controller = ScrollController();
+    final songsList = _categories[categoryIndex].singers[singerIndex].songs;
     return Scaffold(
         appBar: AppBar(
           title: Text(title),
@@ -84,15 +86,16 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
         body: DraggableScrollbar.semicircle(
           alwaysVisibleScrollThumb: true,
           controller: controller,
-          labelTextBuilder: (double offset) => Text("${offset}", style: TextStyle(color: Colors.white),),
+          labelTextBuilder: (double offset) => Text(
+                "${songsList[min(offset ~/ 55.0, songsList.length - 1)].title.substring(0,1)}",
+                style: TextStyle(color: Colors.black),
+              ),
           scrollbarTimeToFade: Duration(seconds: 1),
           child: ListView.builder(
               controller: controller,
-              itemCount:
-                  _categories[categoryIndex].singers[singerIndex].songs.length,
+              itemCount: songsList.length,
               itemBuilder: (context, int) {
-                var song =
-                    _categories[categoryIndex].singers[singerIndex].songs[int];
+                var song = songsList[int];
                 return InkWell(
                   splashColor: Colors.lightBlueAccent,
                   onTap: () {
