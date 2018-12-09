@@ -81,11 +81,11 @@ class SongSelectorScreenState extends State<SongSelectorScreen> {
               },
               child: Icon(Icons.arrow_back)),
         ),
-        body: DraggableScrollbar.arrows(
+        body: DraggableScrollbar.semicircle(
+          alwaysVisibleScrollThumb: true,
           controller: controller,
           labelTextBuilder: (double offset) => Text("${offset}", style: TextStyle(color: Colors.white),),
           scrollbarTimeToFade: Duration(seconds: 1),
-          backgroundColor: Colors.red,
           child: ListView.builder(
               controller: controller,
               itemCount:
