@@ -10,15 +10,30 @@ class UserMenuScreen extends StatefulWidget {
 }
 
 class UserMenuScreenState extends State<UserMenuScreen> {
-
   @override
   Widget build(BuildContext context) {
+    final MyInheritedWidgetState state = MyInheritedWidget.of(context);
 
     return Expanded(
-      child: Scaffold(
+        child: Scaffold(
       appBar: AppBar(
         title: Text('Song Queue'),
         centerTitle: true,
+        actions: <Widget>[
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    state.removeSong(state.retriveLatestSong);
+                  });
+                },
+                child: Icon(
+                  Icons.skip_next,
+                  color: Colors.white,
+                )),
+          )
+        ],
       ),
       drawer: Drawer(
         child: SongSelectorScreen(),
@@ -26,6 +41,4 @@ class UserMenuScreenState extends State<UserMenuScreen> {
       body: SongQueueScreen(),
     ));
   }
-
-
 }
