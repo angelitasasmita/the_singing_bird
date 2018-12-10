@@ -43,10 +43,10 @@ class _BaseWidgetState extends State<BaseWidget> {
   Widget build(BuildContext context) {
     return MyInheritedWidget(
       child: Scaffold(
-//        appBar: AppBar(
-//          title: Text(widget.title),
-//          automaticallyImplyLeading: false,
-//        ),
+        appBar: AppBar(
+          title: Text(widget.title),
+          automaticallyImplyLeading: false,
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

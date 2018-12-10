@@ -19,30 +19,26 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     if (state.songsCount == 0) {
       _videoScreen = Center(child: Text('No songs playing :('));
     } else {
-      _videoScreen = WebviewScaffold(url: state.retriveSongs[0].link);
+      _videoScreen = WebviewScaffold(url: state.retriveLatestSong.link);
     }
 
-    return Expanded(
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("The Singing Bird"),
-          automaticallyImplyLeading: false,
-          centerTitle: true,
+    return Column(
+      children: <Widget>[
+        Container(
+          height: 300,
+          child: _videoScreen,
         ),
-        body: Container(height: 300, child: _videoScreen),
-        floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.skip_next),
-            onPressed: () {
-              setState(() {
-                state.removeSong(state.retriveSongs[0]);
-              });
-            }),
+        FloatingActionButton(
+          child: Icon(Icons.skip_next),
+          onPressed: (){
+            setState(() {
+              state.removeSong(state.retriveLatestSong);
+              _videoScreen = WebviewScaffold(url: state.retriveLatestSong.link);
 
-//      Container(
-//      height: 300,
-//        child: FlutterYoutube.playYoutubeVideoByUrl(
-//            apiKey: _API_KEY, videoUrl: state.retriveSongs[0].link, autoPlay: true)
-      ),
+            });
+          },
+        )
+      ],
     );
   }
 }
