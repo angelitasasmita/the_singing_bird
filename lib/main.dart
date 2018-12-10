@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:the_singing_bird/inherited.dart';
 import 'package:the_singing_bird/user_menu_screen.dart';
 import 'package:the_singing_bird/video_player_screen.dart';
 
@@ -40,18 +41,20 @@ class _BaseWidgetState extends State<BaseWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-        automaticallyImplyLeading: false,
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            VideoPlayerScreen(),
-            UserMenuScreen(),
-          ],
+    return MyInheritedWidget(
+      child: Scaffold(
+//        appBar: AppBar(
+//          title: Text(widget.title),
+//          automaticallyImplyLeading: false,
+//        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              VideoPlayerScreen(),
+              UserMenuScreen(),
+            ],
+          ),
         ),
       ),
     );

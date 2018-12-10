@@ -14,19 +14,17 @@ class UserMenuScreenState extends State<UserMenuScreen> {
   @override
   Widget build(BuildContext context) {
 
-    return MyInheritedWidget(
-      child: Expanded(
-        child: Scaffold(
-        appBar: AppBar(
-          title: Text('Song Queue'),
-          centerTitle: true,
-        ),
-        drawer: Drawer(
-          child: SongSelectorScreen(),
-        ),
-        body: SongQueueScreen(),
-      )),
-    );
+    return Expanded(
+      child: Scaffold(
+      appBar: AppBar(
+        title: Text('Song Queue'),
+        centerTitle: true,
+      ),
+      drawer: Drawer(
+        child: SongSelectorScreen(),
+      ),
+      body: SongQueueScreen(),
+    ));
   }
 
 
