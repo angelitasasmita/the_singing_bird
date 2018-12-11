@@ -23,7 +23,7 @@ class SongQueueScreenState extends State<SongQueueScreen> {
               child: Icon(Icons.clear)),
           title: Text(song.title),
           subtitle: Text(song.singerName),
-          trailing: Icon(Icons.dehaze),
+          trailing: Icon(Icons.drag_handle),
         );
 
       } else {
@@ -38,7 +38,7 @@ class SongQueueScreenState extends State<SongQueueScreen> {
                   child: Icon(Icons.clear)),
               title: Text(song.title),
               subtitle: Text(song.singerName),
-              trailing: Icon(Icons.dehaze),
+              trailing: Icon(Icons.drag_handle),
             );
           },
 
