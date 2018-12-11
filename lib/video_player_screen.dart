@@ -16,7 +16,10 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     if (state.songsCount == 0) {
       _videoScreen = Center(child: Text('No songs playing :('));
     } else {
-      _videoScreen = WebviewScaffold(url: state.retriveLatestSong.link);
+//      _videoScreen = WebviewScaffold(url: state.retriveSongs[0].link);
+      _videoScreen = Container(
+        child: Center(child: Text("Playing: " + state.retriveSongs[0].title)),
+      );
     }
 
     return Container(
