@@ -25,7 +25,9 @@ class UserMenuScreenState extends State<UserMenuScreen> {
             child: GestureDetector(
                 onTap: () {
                   setState(() {
-                    state.removeFirstSong();
+                    if (state.songsCount != 0) {
+                      state.removeFirstSong();
+                    }
                   });
                 },
                 child: Icon(
